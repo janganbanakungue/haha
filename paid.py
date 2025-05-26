@@ -13,7 +13,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     help_text = (
         "*STX Bot by @Kecee_Pyrite*\n\n"
         "Available commands:\n"
-        "/permit — Kirimkan command ini sebelmum menggunakan bot\n"
+        "/permit — Kirimkan command ini sebelum menggunakan bot\n"
         "/stx `<ip> <port> <durasi>`\n\n"
         "*Example:*\n"
         "/stx `158.10.108.179 5506 120`"
