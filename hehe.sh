@@ -9,7 +9,8 @@ sudo pip3 install --no-cache-dir nest_asyncio psutil python-telegram-bot telebot
 sudo pip3 install python-telegram-bot --upgrade
 
 # Jalankan bot Python lo di background
-sudo python3 paid.py &
+sudo cp paid.py /root
+sudo python3 /root/paid.py &
 BOT_PID=$!
 
 # Tunggu 5 jam
