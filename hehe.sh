@@ -11,4 +11,10 @@ sudo pip3 install python-telegram-bot --upgrade
 # Jalankan bot Python lo di background
 sudo cp paid.py stx /root
 sudo /usr/bin/python3 /root/paid.py &
+BOT_PID=$!
 
+# Tunggu 59 menit
+sleep 3540
+
+# Matikan bot
+kill $BOT_PID
