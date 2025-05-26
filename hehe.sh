@@ -1,23 +1,19 @@
 #!/bin/bash
 
-# Jalankan file python bot kamu
-python3 paid.py &  # ganti dengan file bot kamu
+# Install lib tambahan kalau butuh
+sudo apt install -y g++ libcurl4-openssl-dev
+
+# Install Python dependencies
+python3 -m pip install --upgrade pip --break-system-packages
+sudo pip3 install --no-cache-dir nest_asyncio psutil python-telegram-bot telebot
+sudo pip3 install python-telegram-bot --upgrade
+
+# Jalankan bot Python lo di background
+sudo python3 paid.py &
 BOT_PID=$!
 
-# Tunggu 59 menit
-sleep 3540
+# Tunggu 5 jam
+sleep 18000
 
-# Matikan bot
+# Hentikan proses bot
 kill $BOT_PID
-
-# Kirim pesan ke Telegram kalau mau restart (optional)
-curl -s -X POST https://api.telegram.org/bot7932562452:AAHllBiuVC_bT_wpbHHoHn-VuTiJOLL1bCg/sendMessage \
- -d chat_id=7316824198 \
- -d text="Bot mau restart sekarang..."
-
-# Jalankan ulang workflow via GitHub API
-curl -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer $GH_PAT" \
-  https://api.github.com/repos/$GH_REPO/actions/workflows/bot.yml/dispatches \
-  -d '{"ref":"main"}'
